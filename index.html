@@ -4,21 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Krajčírstvo pre psov Veliza</title>
+  <meta name="theme-color" content="#96515e">
+  <link rel="icon" type="image/svg+xml" sizes="any" href="./favicon.svg?v=2">
+  <link rel="shortcut icon" type="image/svg+xml" href="./favicon.svg?v=2">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header class="site-header">
     <a class="brand" href="#domov" aria-label="Krajčírstvo Veliza – Domov">
-      <svg viewBox="0 0 64 64" role="img" aria-label="Logo krajčírstva">
-        <circle cx="32" cy="32" r="29" fill="#fff" stroke="#b87582" stroke-width="2"/>
-        <circle cx="32" cy="32" r="23" fill="#f6dfe2" opacity=".75"/>
-        <path d="M24 31c-2 1-4 4-4 7 0 5 4 8 8 8 2 0 3-1 4-2 1 1 2 2 4 2 4 0 8-3 8-8 0-3-2-6-4-7-3-2-13-2-16 0z" fill="#fff" stroke="#484848" stroke-width="1.6"/>
-        <path d="M20 28c-3-2-5-6-3-9 2-3 6-1 8 2M44 28c3-2 5-6 3-9-2-3-6-1-8 2" fill="#fff" stroke="#484848" stroke-width="1.6"/>
-        <circle cx="27" cy="35" r="1.4" fill="#484848"/>
-        <circle cx="37" cy="35" r="1.4" fill="#484848"/>
-        <path d="M29 40c2 2 4 2 6 0" fill="none" stroke="#484848" stroke-width="1.4" stroke-linecap="round"/>
-        <path d="M32 38l-3 4h6z" fill="#484848"/>
-      </svg>
+      <img src="img/logo.png" alt="Logo krajčírstva Veliza">
     </a>
 
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav">
@@ -41,53 +35,66 @@
     </a>
   </header>
 
+  <svg class="photo-filters" aria-hidden="true" focusable="false">
+    <defs>
+      <filter id="photo-sharpen">
+        <feConvolveMatrix order="3" kernelMatrix="0 -0.25 0 -0.25 2 -0.25 0 -0.25 0" preserveAlpha="true"/>
+      </filter>
+    </defs>
+  </svg>
+
   <main id="domov">
     <section class="hero">
       <div class="hero-copy">
-        <h1>Kvalitné oblečenie pre Vaších psov na mieru</h1>
+        <h1><span class="heading-icon heading-icon-paw" aria-hidden="true">●</span>Kvalitné oblečenie pre Vaších psov na mieru</h1>
         <p>Šijeme kvalitné, funkčné a štýlové oblečenie pre vašich psov podľa vašich predstáv a potrieb. Šijeme pre všetkých psíkov od maznáčikov až po dobrodruhov. Nechajte svoju predstavu stať sa realitou.</p>
         <a class="primary-button" href="#objednavka">Objednať</a>
       </div>
-
-      <div class="hero-image" aria-label="Ilustračný obrázok psa">
-        <img src="assets/dog-hero.jpg" alt="Zlatý retriever">
-      </div>
     </section>
 
-    <section class="materials-preview" id="produkty" aria-label="Ukážka produktov a materiálov">
-      <div class="product-strip">
-        <article class="product-card">
-          <img src="assets/dog-1.jpg" alt="Psa na rannom svetle">
-        </article>
-        <article class="product-card">
-          <img src="assets/dog-2.jpg" alt="Usmievavý pes">
-        </article>
-        <article class="product-card">
-          <img src="assets/dog-3.jpg" alt="Pes s kvetom">
-        </article>
+    <section class="materials-preview" id="produkty" aria-label="Ukážka materiálov">
+      <div class="material-gallery">
+        <a class="sample-card sample-card-measure" href="#objednavka" aria-label="Objednať oblečenie podľa mier psíka">
+          <span class="sample-card-top"><span>MERANIE</span><b>01</b></span>
+          <span class="sample-card-mark sample-mark-measure" aria-hidden="true"><i></i></span>
+          <span class="sample-card-copy"><strong>Strih na mieru</strong><small>Podľa mier vášho psíka</small></span>
+          <span class="sample-card-arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="sample-card sample-card-fabric" href="#objednavka" aria-label="Vybrať farbu a materiál oblečenia">
+          <span class="sample-card-top"><span>LÁTKY A FARBY</span><b>02</b></span>
+          <span class="sample-card-mark sample-mark-fabric" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="sample-card-copy"><strong>Váš výber</strong><small>Farby, ktoré potešia</small></span>
+          <span class="sample-card-arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="sample-card sample-card-sewing" href="#objednavka" aria-label="Objednať ručne šité oblečenie">
+          <span class="sample-card-top"><span>ATELIÉR</span><b>03</b></span>
+          <span class="sample-card-mark sample-mark-sewing" aria-hidden="true"><i></i></span>
+          <span class="sample-card-copy"><strong>Ručné šitie</strong><small>S láskou pre vášho psíka</small></span>
+          <span class="sample-card-arrow" aria-hidden="true">↗</span>
+        </a>
       </div>
 
       <aside class="material-panel" id="cennik">
-        <h2>Materiály</h2>
+        <h2><span class="heading-icon heading-icon-fabric" aria-hidden="true">◆</span>Materiály</h2>
         <div class="swatches" aria-label="Farebné vzorky materiálov">
-          <span class="swatch cream"></span>
-          <span class="swatch peach"></span>
-          <span class="swatch apricot"></span>
-          <span class="swatch coral"></span>
-          <span class="swatch terracotta"></span>
-          <span class="swatch rose"></span>
-          <span class="swatch berry"></span>
-          <span class="swatch mauve"></span>
-          <span class="swatch sage"></span>
-          <span class="swatch olive"></span>
-          <span class="swatch dots">....</span>
+          <button class="swatch cream" type="button" aria-label="Krémový materiál"></button>
+          <button class="swatch peach" type="button" aria-label="Broskyňový materiál"></button>
+          <button class="swatch apricot" type="button" aria-label="Marhuľový materiál"></button>
+          <button class="swatch coral" type="button" aria-label="Koralový materiál"></button>
+          <button class="swatch terracotta" type="button" aria-label="Terakotový materiál"></button>
+          <button class="swatch rose" type="button" aria-label="Ružový materiál"></button>
+          <button class="swatch berry" type="button" aria-label="Staroružový materiál"></button>
+          <button class="swatch mauve" type="button" aria-label="Mauve materiál"></button>
+          <button class="swatch sage" type="button" aria-label="Šalviový materiál"></button>
+          <button class="swatch olive" type="button" aria-label="Olivový materiál"></button>
+          <span class="swatch dots" aria-hidden="true">....</span>
         </div>
       </aside>
     </section>
 
     <section class="realization" id="objednavka">
       <div class="realization-copy">
-        <h2>NECHAJTE SVOJU PREDSTAVU STAŤ SA REALITOU</h2>
+        <h2><span class="heading-icon heading-icon-needle" aria-hidden="true">⌁</span>NECHAJTE SVOJU PREDSTAVU STAŤ SA REALITOU</h2>
         <ul>
           <li>Vyberte si farbu, látku a štýl.</li>
           <li>Zvýšok nechajte na nás.</li>
@@ -96,43 +103,388 @@
         <a class="primary-button" href="#objednavka">PRENIESŤ NÁPAD NA REALITU</a>
       </div>
 
-      <div class="illustrations" aria-hidden="true">
-        <svg class="paw-mark" viewBox="0 0 140 140">
-          <ellipse cx="45" cy="50" rx="15" ry="19" transform="rotate(-30 45 50)"/>
-          <ellipse cx="72" cy="38" rx="15" ry="19" transform="rotate(-8 72 38)"/>
-          <ellipse cx="98" cy="47" rx="15" ry="19" transform="rotate(24 98 47)"/>
-          <ellipse cx="109" cy="74" rx="13" ry="17" transform="rotate(48 109 74)"/>
-          <path d="M45 76c5-13 19-21 33-17 18 4 32 18 29 35-3 16-19 13-27 8-8-5-19-4-27 1-10 6-17-11-8-27z"/>
-        </svg>
-        <svg class="sketch-mark" viewBox="0 0 150 150">
-          <path d="M37 120c-18-6-25-24-19-40 6-17 24-24 40-15 15 8 23 29 13 43-8 11-24 17-34 12z" fill="#fff"/>
-          <circle cx="60" cy="61" r="8" fill="#fff"/>
-          <circle cx="88" cy="62" r="8" fill="#fff"/>
-          <circle cx="111" cy="72" r="7" fill="#fff"/>
-          <circle cx="40" cy="77" r="7" fill="#fff"/>
-          <path d="M73 92c-4 8-3 14 7 18 10-2 13-9 8-17-4-6-11-6-15-1z" fill="#484848"/>
-          <circle cx="46" cy="96" r="4" fill="#484848"/>
-        </svg>
-        <svg class="measuring-mark" viewBox="0 0 150 150">
-          <path d="M34 84c-12 22-7 43 15 45 22 2 34-11 40-31" fill="none" stroke="#484848" stroke-width="2"/>
-          <path d="M54 38c6 25-1 54-17 75" fill="none" stroke="#484848" stroke-width="2"/>
-          <path d="M83 79l38-38M72 95l45 4" fill="none" stroke="#484848" stroke-width="2"/>
-          <path d="M44 122c10-4 18-12 23-21" fill="none" stroke="#484848" stroke-width="2"/>
-        </svg>
+      <div class="home-process" aria-label="Ako vzniká oblečenie na mieru">
+        <a class="home-process-card" href="#objednavka">
+          <span class="home-process-number">01</span>
+          <span class="home-process-copy"><strong>Zmeriame</strong><small>Začíname pohodlím vášho psíka</small></span>
+          <span class="home-process-arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="home-process-card" href="#objednavka">
+          <span class="home-process-number">02</span>
+          <span class="home-process-copy"><strong>Vyberieme</strong><small>Farbu, materiál aj štýl</small></span>
+          <span class="home-process-arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="home-process-card" href="#objednavka">
+          <span class="home-process-number">03</span>
+          <span class="home-process-copy"><strong>Ušijeme</strong><small>Jedinečný kúsok na mieru</small></span>
+          <span class="home-process-arrow" aria-hidden="true">→</span>
+        </a>
       </div>
+    </section>
+
+    <section class="page-section" id="produkty-page" hidden>
+      <div class="page-heading product-hero">
+        <h1><span class="heading-icon heading-icon-paw" aria-hidden="true">●</span>Produkty</h1>
+        <ul>
+          <li>Pozrite si možnosti materiálov a farieb.</li>
+          <li>Pozrite si našu galériu vytvorenej predmetovej zákazníkov.</li>
+        </ul>
+      </div>
+
+      <div class="products-materials">
+        <h2>Materiály a možnosti</h2>
+        <p class="materials-note">Nemajú si na výber z materiál? Nevadí! Jednoducho pri nám nepíšete svoj požiadavky k objednávke. Všetko bude podľa vašich predstáv.</p>
+        <div class="large-swatches" aria-label="Farebné vzorky materiálov">
+          <button class="large-swatch swatch-cream" type="button" aria-label="Krémový materiál"></button>
+          <button class="large-swatch swatch-sand" type="button" aria-label="Pieskový materiál"></button>
+          <button class="large-swatch swatch-gold" type="button" aria-label="Zlatý materiál"></button>
+          <button class="large-swatch swatch-yellow" type="button" aria-label="Žltý materiál"></button>
+          <button class="large-swatch swatch-peach" type="button" aria-label="Broskyňový materiál"></button>
+          <button class="large-swatch swatch-pink" type="button" aria-label="Ružový materiál"></button>
+          <button class="large-swatch swatch-lilac" type="button" aria-label="Fialový materiál"></button>
+          <button class="large-swatch swatch-violet" type="button" aria-label="Levanduľový materiál"></button>
+          <button class="large-swatch swatch-purple" type="button" aria-label="Purpurový materiál"></button>
+          <button class="large-swatch swatch-blue" type="button" aria-label="Modrý materiál"></button>
+          <button class="large-swatch swatch-cyan" type="button" aria-label="Azúrový materiál"></button>
+          <button class="large-swatch swatch-sky" type="button" aria-label="Svetlomodrý materiál"></button>
+          <button class="large-swatch swatch-mint" type="button" aria-label="Mätový materiál"></button>
+          <button class="large-swatch swatch-sage" type="button" aria-label="Šalviový materiál"></button>
+          <button class="large-swatch swatch-green" type="button" aria-label="Zelený materiál"></button>
+          <button class="large-swatch swatch-olive" type="button" aria-label="Olivový materiál"></button>
+          <button class="large-swatch swatch-wine" type="button" aria-label="Vínový materiál"></button>
+          <button class="large-swatch swatch-cognac" type="button" aria-label="Koňakový materiál"></button>
+          <button class="large-swatch swatch-powder" type="button" aria-label="Púdrovo fialový materiál"></button>
+          <button class="large-swatch swatch-indigo" type="button" aria-label="Indigový materiál"></button>
+          <button class="large-swatch swatch-petrol" type="button" aria-label="Petrolejový materiál"></button>
+          <button class="large-swatch swatch-moss" type="button" aria-label="Machový materiál"></button>
+          <button class="large-swatch swatch-chocolate" type="button" aria-label="Čokoládový materiál"></button>
+          <button class="large-swatch swatch-charcoal" type="button" aria-label="Antracitový materiál"></button>
+        </div>
+      </div>
+
+      <h2 class="gallery-heading">– OBLÉČENIE NA MIERU PODĽA VAŠICH PREDSTÁV –</h2>
+      <div class="product-gallery">
+        <article class="gallery-card">
+          <div class="gallery-art art-coat" aria-label="Vesta podľa predstáv zákazníka">
+            <img class="photo-sharpened" src="img/pes4.png" alt="Chrt v béžovom kabátiku na mieru" loading="lazy">
+            <span>Vesta podľa predstáv zákazníka</span>
+          </div>
+        </article>
+        <article class="gallery-card">
+          <div class="gallery-art art-wear" aria-label="Elegantný a funkčný kabát">
+            <img class="photo-sharpened" src="img/pes 5.png" alt="Čierny pes v červenom kabátiku počas skoku v prírode" loading="lazy">
+            <span>Elegantný a funkčný kabát</span>
+          </div>
+        </article>
+        <article class="gallery-card">
+          <div class="gallery-art art-fit" aria-label="Mierne na mieru">
+            <img src="img/pes6.jpg" alt="Jazvečík v svetlom svetri s modrými pruhmi" loading="lazy">
+            <span>Mierne na mieru</span>
+          </div>
+        </article>
+        <article class="gallery-card">
+          <div class="gallery-art art-sport" aria-label="Oblečenie podľa špeciálneho strihu">
+            <img src="img/pes3-optimalizovana.webp" alt="Welsh corgi v ružovom oblečení na mieru" loading="lazy">
+            <span>Oblečenie podľa špeciálneho strihu</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="page-section order-page" id="objednavka-page" hidden>
+      <div class="order-hero">
+        <div class="order-hero-content">
+          <h1>Objednanie na mieru</h1>
+          <p>Vyplňte objednávkový formulár a jednoducho si objednajte ušité oblečenie na mieru. K našim službám si môžete objednať pohodlný spôsob vzorky.</p>
+        </div>
+      </div>
+
+      <div class="order-steps">
+        <div>
+          <p class="eyebrow order-eyebrow">Jasne v štyroch krokoch</p>
+          <h2>Ako objednať</h2>
+          <div class="step-circles" aria-label="Kroky objednávky">
+            <button class="order-step-button is-active" type="button" data-order-step="0" aria-controls="order-fieldset-1" aria-current="step">
+              <span class="step-number">01</span>
+              <span class="step-copy"><strong>Vaše údaje</strong><small>Kontakt a informácie o psíkovi</small></span>
+              <span class="step-arrow" aria-hidden="true">→</span>
+            </button>
+            <button class="order-step-button" type="button" data-order-step="1" aria-controls="order-fieldset-2">
+              <span class="step-number">02</span>
+              <span class="step-copy"><strong>Miery psíka</strong><small>Krk, hrudník a dĺžka chrbta</small></span>
+              <span class="step-arrow" aria-hidden="true">→</span>
+            </button>
+            <button class="order-step-button" type="button" data-order-step="2" aria-controls="order-fieldset-3">
+              <span class="step-number">03</span>
+              <span class="step-copy"><strong>Oblečenie</strong><small>Typ, farba a materiál</small></span>
+              <span class="step-arrow" aria-hidden="true">→</span>
+            </button>
+            <button class="order-step-button" type="button" data-order-step="3" aria-controls="order-fieldset-4">
+              <span class="step-number">04</span>
+              <span class="step-copy"><strong>Doručenie</strong><small>Adresa pre hotový kúsok</small></span>
+              <span class="step-arrow" aria-hidden="true">→</span>
+            </button>
+          </div>
+        </div>
+        <aside>
+          <h2>Ako zmerať psa</h2>
+          <ol>
+            <li>Obvod krku</li>
+            <li>Obvod hrudníka</li>
+            <li>Dĺžka chrbta</li>
+          </ol>
+          <div class="measure-art">
+            <img class="photo-sharpened" src="img/spravne merania.png" alt="Nákres s vyznačením obvodu krku, obvodu hrudníka a dĺžky chrbta psa" loading="lazy">
+          </div>
+        </aside>
+      </div>
+
+      <div class="order-progress" aria-label="Priebeh objednávky">
+        <span class="progress-step active" aria-current="step"><b>1</b><small>Vaše údaje</small></span>
+        <span class="progress-step"><b>2</b><small>Miery psíka</small></span>
+        <span class="progress-step"><b>3</b><small>Oblečenie</small></span>
+        <span class="progress-step"><b>4</b><small>Doručenie</small></span>
+      </div>
+
+      <form class="order-form" id="order-form">
+        <div class="order-form-heading">
+          <span class="order-form-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" focusable="false">
+              <ellipse cx="11" cy="19" rx="4" ry="5"/>
+              <ellipse cx="20" cy="13" rx="4" ry="5"/>
+              <ellipse cx="29" cy="13" rx="4" ry="5"/>
+              <ellipse cx="37" cy="19" rx="4" ry="5"/>
+              <path d="M24 22c-6 0-10 5-10 10 0 4 3 6 7 5 2-.5 4-.5 6 0 4 1 7-1 7-5 0-5-4-10-10-10z"/>
+            </svg>
+          </span>
+          <div class="order-form-heading-copy">
+            <p class="eyebrow">Objednávka na mieru</p>
+            <h2>Váš kúsok na mieru</h2>
+            <p>Vyplňte jednotlivé časti formulára. Ak máte špeciálnu predstavu, napíšte nám ju do poznámky.</p>
+          </div>
+        </div>
+        <fieldset id="order-fieldset-1">
+          <legend>1. Základné informácie</legend>
+          <label>Vaše meno a priezvisko<input name="name" required></label>
+          <label>Email<input type="email" name="email" required></label>
+          <label>Telefón<input type="tel" name="phone" required></label>
+          <label>Meno psa<input name="dogName"></label>
+          <label>Rasa psa<input name="breed"></label>
+        </fieldset>
+
+        <fieldset id="order-fieldset-2">
+          <legend>2. Miery psíka</legend>
+          <p>Ako správne zmerať? Pozrite si návod vyššie.</p>
+          <label>Obvod krku (cm)<input type="number" name="neck" min="1" required></label>
+          <label>Obvod hrudníka (cm)<input type="number" name="chest" min="1" required></label>
+          <label>Dĺžka chrbta (cm)<input type="number" name="length" min="1" required></label>
+          <label>Poznámky a miery navýše (voliteľné)<textarea name="measurements"></textarea></label>
+        </fieldset>
+
+        <fieldset id="order-fieldset-3">
+          <legend>3. Oblečenie</legend>
+          <label class="clothing-type-field">Typ oblečenia
+            <select class="clothing-type-select" name="clothing" required>
+              <option value="" disabled selected>Vyberte typ oblečenia</option>
+              <option>Sveter</option>
+              <option>Mikina</option>
+              <option>Kabátik</option>
+              <option>Nepromokavá bunda</option>
+              <option>Pláštenka</option>
+              <option>Vesta</option>
+              <option>Nákrčník</option>
+              <option>Šatka</option>
+              <option>Tričko</option>
+              <option>Overal</option>
+              <option>Iné</option>
+            </select>
+            <small>Vyberte jeden typ oblečenia. Pri možnosti Iné doplňte predstavu do poznámky.</small>
+          </label>
+          <label>Farba<input name="color" placeholder="Napr. tmavoružová"></label>
+          <label>Materiál
+            <select name="material">
+              <option value="">Vyberte materiál</option>
+              <option>Funkčný svetr</option>
+              <option>Teplá mikina</option>
+              <option>Zateplený sveter</option>
+              <option>Ľahká mikina</option>
+              <option>Jesený kabátik</option>
+              <option>Nepromokavá bunda</option>
+            </select>
+          </label>
+          <label>Podrobnosti podľa požiadavky<textarea name="details" placeholder="Pri možnosti Iné opíšte svoj návrh alebo strih."></textarea></label>
+        </fieldset>
+
+        <fieldset id="order-fieldset-4">
+          <legend>4. Dodacie údaje</legend>
+          <label>Adresa doručenia<input name="address" required></label>
+          <label>Mesto<input name="city" required></label>
+          <label>PSČ<input name="postcode" required></label>
+          <label>Krajina
+            <select name="country">
+              <option>Slovensko</option>
+              <option>Česká republika</option>
+            </select>
+          </label>
+          <label class="consent"><input type="checkbox" required> Súhlasím s podmienkami objednávky a spracovaním osobných údajov.</label>
+          <button class="primary-button dark-button" type="submit">Dokončiť objednávku</button>
+        </fieldset>
+      </form>
+    </section>
+
+    <section class="page-section pricing-page" id="cennik-page" hidden>
+      <h1><span class="heading-icon heading-icon-fabric" aria-hidden="true">€</span>Cenník</h1>
+      <div class="pricing-layout">
+        <table>
+          <thead>
+            <tr><th>Typ oblečenia</th><th>Cena (€)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Pletený sveter</td><td>30</td></tr>
+            <tr><td>Teplá mikina</td><td>35</td></tr>
+            <tr><td>Zateplený sveter</td><td>40</td></tr>
+            <tr><td>Ľahká mikina</td><td>25</td></tr>
+            <tr><td>Jesený kabátik</td><td>35</td></tr>
+            <tr><td>Nepromokavá bunda</td><td>40</td></tr>
+            <tr><td>Zateplená bunda</td><td>50</td></tr>
+            <tr><td>Zimný kabát</td><td>60</td></tr>
+            <tr><td>Bavlnené tričko</td><td>20</td></tr>
+            <tr><td>Domáce pyžamo</td><td>25</td></tr>
+            <tr><td>Psia šatka</td><td>8</td></tr>
+            <tr><td>Postroj na mieru</td><td>15</td></tr>
+            <tr><td>Zákazkové šitie na mieru</td><td>25 €/hod</td></tr>
+          </tbody>
+        </table>
+
+        <div class="pricing-factors">
+          <h2>Faktory ovplyvňujúce cenu</h2>
+          <div class="factor-grid">
+            <button type="button">Veľkosť psa</button>
+            <button type="button">Špeciálny materiál</button>
+            <button type="button">Špeciálne požiadavky</button>
+            <button type="button">Prioritné spracovanie</button>
+            <button type="button">Typ produktu</button>
+            <button type="button">Zložitosť úprav</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-section faq-page" id="faq-page" hidden>
+      <h1><span class="heading-icon heading-icon-needle" aria-hidden="true">?</span>Najčastejšie otázky</h1>
+      <div class="faq-layout">
+        <div class="faq-list">
+          <details open>
+            <summary>Kedy mi príde moja objednávka?</summary>
+            <p>Zvyčajne dodanie je od 2–5 dní, avšak emailom vám bude zaslaný odhadovaný termín podľa typu objednávky.</p>
+          </details>
+          <details>
+            <summary>Pre aké plemená psov šijete oblečenie?</summary>
+            <p>Pre všetky plemená psov a pre všetky požiadavky či potreby.</p>
+          </details>
+          <details>
+            <summary>Ako si môžem objednať oblečenie?</summary>
+            <p>Objednávku môžete vytvoriť cez kartu „Objednanie“. Kde sa nachádza objednávací formulár. V ňom postupne vyplňte políčka a objednajte.</p>
+          </details>
+          <details>
+            <summary>Ako správne zmerať svojho psa?</summary>
+            <p>Sí potrebné základné rozmery psa a to obvod krku, hrudníka a dĺžku chrbta. Ak máte špeciálny typ oblečenia, do poznámky napíšte, aký bysme dodali spresňujúci rozmer chýbal, tak vás budeme kontaktovať aby oblečenie sedelo perfektné. Na karté „Objednanie“ je obrázok kde presne zmerate.</p>
+          </details>
+          <details>
+            <summary>Je možné si vybrať vlastnú farbu a materiál?</summary>
+            <p>Ano! Zákazníci si môžu vybrať z 2 dostupných fareb a 7 materiálov a farieb podľa svojich predstáv.</p>
+          </details>
+          <details>
+            <summary>Koľko stojí oblečenie pre psa na mieru?</summary>
+            <p>Cena vždy závisí od typu objednávky, avšak orientačnú cenu a ovplyvňovacie faktory nájdete v cenníku.</p>
+          </details>
+          <details>
+            <summary>Je možné oblečenie upraviť, ak psovi nesedí?</summary>
+            <p>Ano, v prípade potreby ponúkame úpravu a prispôsobenie bez pitaké. Ak nám to to aby oblečenie sedelo vášmu psovi dokonalo.</p>
+          </details>
+          <details>
+            <summary>Je možné objednať oblečenie aj podľa vlastného návrhu?</summary>
+            <p>Samozrejme! Radi vytvoríme vaše požiadavky a potreby na kreatínné oblečenie. Bud nás kontaktujte telefonicky alebo emailom.</p>
+          </details>
+        </div>
+
+        <div class="paw-decoration" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-section thanks-page" id="dakujeme-page" hidden>
+      <h1>ĎAKUJEME ZA VAŠU OBJEDNÁVKU!</h1>
+      <h2>Vaša objednávka bola úspešne odoslaná.</h2>
+      <p>Vašu objednávku spracujeme a čoskoro vás zašleme informácie o objednávke na emailovú adresu. V prípade potreby nás neváhajte kontaktovať. Radi vám poradíme a pomôžeme.</p>
+      <p class="signature">-Váš nápad, náš šijací talent-</p>
+      <address>
+        <span>+4219 077 7777</span>
+        <span>krajcirstvo@veliza.sk</span>
+        <span>Lapákova 8, 05493</span>
+      </address>
+      <a class="primary-button" href="#domov">SPÄŤ NA HLAVNÚ STRÁNKU</a>
     </section>
   </main>
 
+  <div class="profile-modal" id="profil" role="dialog" aria-modal="true" aria-labelledby="profile-title" hidden>
+    <div class="profile-backdrop"></div>
+    <div class="profile-window">
+      <button class="profile-close" type="button" aria-label="Zavrieť prihlásenie">×</button>
+      <h1 id="profile-title">
+        <span class="profile-title-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48" focusable="false">
+            <ellipse cx="11" cy="19" rx="4" ry="5"/>
+            <ellipse cx="20" cy="13" rx="4" ry="5"/>
+            <ellipse cx="29" cy="13" rx="4" ry="5"/>
+            <ellipse cx="37" cy="19" rx="4" ry="5"/>
+            <path d="M24 22c-6 0-10 5-10 10 0 4 3 6 7 5 2-.5 4-.5 6 0 4 1 7-1 7-5 0-5-4-10-10-10z"/>
+          </svg>
+        </span>
+        <span>Účet</span>
+      </h1>
+      <div class="profile-grid">
+        <form class="login-form" id="login-form">
+          <h2>
+            <span class="account-form-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" focusable="false">
+                <circle cx="24" cy="16" r="7"/>
+                <path d="M10 39c1.5-8 6.5-12 14-12s12.5 4 14 12"/>
+              </svg>
+            </span>
+            <span>Prihlásenie</span>
+          </h2>
+          <label>Email<input type="email" name="email" required></label>
+          <label>Heslo<input type="password" name="password" required></label>
+          <a class="forgot-link" href="#forgot">Zabudnuté heslo?</a>
+          <button class="primary-button" type="submit">Prihlásiť sa</button>
+          <p>Nemáte účet? <button class="text-button" type="button" data-focus-register>Zaregistrujte sa.</button></p>
+        </form>
+        <form class="register-form" id="register-form">
+          <h2>
+            <span class="account-form-icon register-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" focusable="false">
+                <circle cx="19" cy="16" r="7"/>
+                <path d="M6 39c1.5-8 6.5-12 13-12 4 0 7 1.5 9.5 4.5M37 13v14M30 20h14"/>
+              </svg>
+            </span>
+            <span>Registrácia</span>
+          </h2>
+          <label>Meno<input name="name" required></label>
+          <label>Priezvisko<input name="surname" required></label>
+          <label>Email<input type="email" name="email" required></label>
+          <label>Heslo<input type="password" name="password" required></label>
+          <label>Potvrdenie hesla<input type="password" name="passwordConfirm" required></label>
+          <button class="primary-button" type="submit">Registrovať</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
   <footer class="site-footer">
     <a class="footer-brand" href="#domov" aria-label="Domov">
-      <svg viewBox="0 0 64 64" aria-hidden="true">
-        <circle cx="32" cy="32" r="29" fill="#fff" stroke="#b87582" stroke-width="2"/>
-        <circle cx="32" cy="32" r="23" fill="#f6dfe2" opacity=".75"/>
-        <path d="M24 31c-2 1-4 4-4 7 0 5 4 8 8 8 2 0 3-1 4-2 1 1 2 2 4 2 4 0 8-3 8-8 0-3-2-6-4-7-3-2-13-2-16 0z" fill="#fff" stroke="#484848" stroke-width="1.6"/>
-        <circle cx="27" cy="35" r="1.4" fill="#484848"/>
-        <circle cx="37" cy="35" r="1.4" fill="#484848"/>
-        <path d="M32 38l-3 4h6z" fill="#484848"/>
-      </svg>
+      <img src="img/logo.png" alt="">
     </a>
 
     <nav class="footer-nav" aria-label="Navigácia v päte">
@@ -156,7 +508,7 @@
     <div class="social">
       <a href="#instagram" aria-label="Instagram">◎</a>
       <a href="#facebook" aria-label="Facebook">f</a>
-      <small>@krajestvoveliza</small>
+      <small>@krajcirstvoveliza</small>
     </div>
   </footer>
 
