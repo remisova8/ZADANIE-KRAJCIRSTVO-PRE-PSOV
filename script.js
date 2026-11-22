@@ -3,6 +3,7 @@ const mainNav = document.querySelector(".main-nav");
 const profileModal = document.querySelector("#profil");
 const profileBackdrop = document.querySelector(".profile-backdrop");
 const profileClose = document.querySelector(".profile-close");
+const profileForms = [...document.querySelectorAll(".profile-grid form")];
 
 const routes = new Set([
   "domov",
@@ -25,6 +26,7 @@ function openProfile() {
   if (!profileModal) return;
   profileModal.hidden = false;
   document.body.style.overflow = "hidden";
+  setActiveProfileForm(document.querySelector("#login-form"));
   window.setTimeout(() => profileModal.querySelector("input")?.focus(), 0);
 }
 
@@ -33,6 +35,19 @@ function closeProfile() {
   profileModal.hidden = true;
   document.body.style.overflow = "";
 }
+
+function setActiveProfileForm(activeForm) {
+  profileForms.forEach((form) => {
+    const active = form === activeForm;
+    form.classList.toggle("is-active", active);
+    form.classList.toggle("is-inactive", !active);
+  });
+}
+
+profileForms.forEach((form) => {
+  form.addEventListener("focusin", () => setActiveProfileForm(form));
+  form.addEventListener("pointerdown", () => setActiveProfileForm(form));
+});
 
 function showPage(route) {
   const currentRoute = routes.has(route) ? route : "domov";
@@ -153,7 +168,7 @@ document.querySelector("#register-form")?.addEventListener("submit", (event) => 
 const colorSwatches = [...document.querySelectorAll(".swatch[data-color], .large-swatch[data-color]")];
 const colorInput = document.querySelector('#order-form input[name="color"]');
 const colorFeedback = [...document.querySelectorAll(".swatch-feedback")];
-const colorPrompt = "Prejdite na vzorku pre názov farby alebo na ňu kliknite a doplňte ju do objednávky.";
+const colorPrompt = "Kliknite na farbu: vloží sa do objednávky.";
 
 function updateColorFeedback(message) {
   colorFeedback.forEach((feedback) => {
@@ -165,7 +180,7 @@ function restoreColorFeedback() {
   const selected = colorSwatches.find((swatch) => swatch.classList.contains("is-selected"));
   updateColorFeedback(
     selected
-      ? `Vybraná farba: ${selected.dataset.color}. Kliknutím na inú vzorku zmeníte výber.`
+      ? `Vybraná: ${selected.dataset.color}`
       : colorPrompt
   );
 }
@@ -196,7 +211,7 @@ colorSwatches.forEach((swatch) => {
       colorInput.dispatchEvent(new Event("input", { bubbles: true }));
     }
 
-    updateColorFeedback(`Vybraná farba: ${colorName}. Doplnená do objednávky.`);
+    updateColorFeedback(`„${colorName}“ pridaná do objednávky.`);
   });
 });
 
@@ -218,6 +233,7 @@ if (orderForm) {
 
   const cursor = document.createElement("span");
   cursor.className = "order-cursor";
+  cursor.setAttribute("aria-hidden", "true");
   document.body.appendChild(cursor);
 
   orderForm.addEventListener("pointerenter", () => cursor.classList.add("visible"));
