@@ -101,6 +101,32 @@ document.querySelectorAll('a[href="#domov"], a[href="#produkty"], a[href="#objed
   });
 });
 
+const orderHeroCta = document.querySelector(".order-hero-cta");
+const orderFormTarget = document.querySelector("#order-form");
+
+if (orderHeroCta && orderFormTarget) {
+  orderHeroCta.addEventListener("click", (event) => {
+    event.preventDefault();
+    orderFormTarget.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+}
+
+const productHeroCta = document.querySelector(".product-hero-cta");
+const productGalleryTarget = document.querySelector("#product-gallery");
+
+if (productHeroCta && productGalleryTarget) {
+  productHeroCta.addEventListener("click", (event) => {
+    event.preventDefault();
+    navigateTo("produkty");
+    window.requestAnimationFrame(() => {
+      productGalleryTarget.scrollIntoView({
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+        block: "start"
+      });
+    });
+  });
+}
+
 profileClose?.addEventListener("click", closeProfile);
 profileBackdrop?.addEventListener("click", closeProfile);
 
@@ -110,11 +136,6 @@ document.addEventListener("keydown", (event) => {
 
 document.querySelector("[data-focus-register]")?.addEventListener("click", () => {
   document.querySelector("#register-form input")?.focus();
-});
-
-document.querySelector("#order-form")?.addEventListener("submit", (event) => {
-  event.preventDefault();
-  navigateTo("dakujeme");
 });
 
 document.querySelector("#login-form")?.addEventListener("submit", (event) => {
@@ -129,20 +150,60 @@ document.querySelector("#register-form")?.addEventListener("submit", (event) => 
   navigateTo("domov");
 });
 
-document.querySelectorAll(".swatch:not(.dots), .large-swatch").forEach((swatch) => {
-  swatch.addEventListener("click", () => {
-    const group = swatch.classList.contains("large-swatch")
-      ? document.querySelectorAll(".large-swatch")
-      : document.querySelectorAll(".swatch:not(.dots)");
+const colorSwatches = [...document.querySelectorAll(".swatch[data-color], .large-swatch[data-color]")];
+const colorInput = document.querySelector('#order-form input[name="color"]');
+const colorFeedback = [...document.querySelectorAll(".swatch-feedback")];
+const colorPrompt = "Prejdite na vzorku pre názov farby alebo na ňu kliknite a doplňte ju do objednávky.";
 
-    group.forEach((item) => item.classList.remove("is-selected"));
-    swatch.classList.add("is-selected");
+function updateColorFeedback(message) {
+  colorFeedback.forEach((feedback) => {
+    feedback.textContent = message;
+  });
+}
+
+function restoreColorFeedback() {
+  const selected = colorSwatches.find((swatch) => swatch.classList.contains("is-selected"));
+  updateColorFeedback(
+    selected
+      ? `Vybraná farba: ${selected.dataset.color}. Kliknutím na inú vzorku zmeníte výber.`
+      : colorPrompt
+  );
+}
+
+colorSwatches.forEach((swatch) => {
+  const colorName = swatch.dataset.color;
+  swatch.setAttribute("aria-label", `Vybrať farbu: ${colorName}`);
+  swatch.setAttribute("aria-pressed", "false");
+  swatch.title = colorName;
+
+  swatch.addEventListener("pointerenter", () => {
+    updateColorFeedback(`Farba: ${colorName}`);
+  });
+  swatch.addEventListener("pointerleave", restoreColorFeedback);
+  swatch.addEventListener("focus", () => {
+    updateColorFeedback(`Farba: ${colorName}`);
+  });
+  swatch.addEventListener("blur", restoreColorFeedback);
+  swatch.addEventListener("click", () => {
+    colorSwatches.forEach((item) => {
+      const selected = item.dataset.color === colorName;
+      item.classList.toggle("is-selected", selected);
+      item.setAttribute("aria-pressed", String(selected));
+    });
+
+    if (colorInput) {
+      colorInput.value = colorName;
+      colorInput.dispatchEvent(new Event("input", { bubbles: true }));
+    }
+
+    updateColorFeedback(`Vybraná farba: ${colorName}. Doplnená do objednávky.`);
   });
 });
 
 document.querySelectorAll(".factor-grid button").forEach((button) => {
   button.addEventListener("click", () => {
-    button.classList.toggle("is-active");
+    const active = button.classList.toggle("is-active");
+    button.setAttribute("aria-pressed", String(active));
   });
 });
 
@@ -151,6 +212,10 @@ const orderProgress = document.querySelectorAll(".progress-step");
 const orderStepButtons = document.querySelectorAll(".order-step-button");
 
 if (orderForm) {
+  const fieldsets = [...orderForm.querySelectorAll("fieldset")];
+  let currentStep = 0;
+  orderForm.noValidate = true;
+
   const cursor = document.createElement("span");
   cursor.className = "order-cursor";
   document.body.appendChild(cursor);
@@ -164,7 +229,6 @@ if (orderForm) {
   orderForm.addEventListener("pointerdown", () => cursor.classList.add("active"));
   orderForm.addEventListener("pointerup", () => cursor.classList.remove("active"));
 
-  const fieldsets = [...orderForm.querySelectorAll("fieldset")];
   const updateOrderProgress = (activeIndex) => {
     orderProgress.forEach((step, stepIndex) => {
       const active = stepIndex === activeIndex;
@@ -183,22 +247,67 @@ if (orderForm) {
   };
 
   fieldsets.forEach((fieldset, index) => {
+    fieldset.hidden = index !== currentStep;
     fieldset.addEventListener("focusin", () => updateOrderProgress(index));
   });
 
+  const showOrderStep = (stepIndex) => {
+    const fieldset = fieldsets[stepIndex];
+    if (!fieldset) return;
+
+    fieldsets.forEach((step, index) => {
+      step.hidden = index !== stepIndex;
+    });
+    currentStep = stepIndex;
+    updateOrderProgress(stepIndex);
+    fieldset.scrollIntoView({ behavior: "smooth", block: "center" });
+
+    const firstControl = fieldset.querySelector('input:not([type="radio"]), select, textarea')
+      ?? fieldset.querySelector('input[type="radio"]');
+    firstControl?.focus({ preventScroll: true });
+  };
+
+  const goToOrderStep = (stepIndex) => {
+    if (!Number.isInteger(stepIndex) || stepIndex < 0 || stepIndex >= fieldsets.length) return;
+
+    for (let index = currentStep; index < stepIndex; index += 1) {
+      if (!fieldsets[index].checkValidity()) {
+        showOrderStep(index);
+        fieldsets[index].reportValidity();
+        return;
+      }
+    }
+
+    showOrderStep(stepIndex);
+  };
+
   orderStepButtons.forEach((button) => {
     button.addEventListener("click", () => {
-      const stepIndex = Number(button.dataset.orderStep);
-      const fieldset = fieldsets[stepIndex];
-      if (!fieldset) return;
-
-      fieldset.scrollIntoView({ behavior: "smooth", block: "center" });
-      const firstControl = fieldset.querySelector('input:not([type="radio"]), select, textarea')
-        ?? fieldset.querySelector('input[type="radio"]');
-      firstControl?.focus({ preventScroll: true });
-      updateOrderProgress(stepIndex);
+      goToOrderStep(Number(button.dataset.orderStep));
     });
   });
+
+  orderForm.querySelectorAll("[data-order-next]").forEach((button) => {
+    button.addEventListener("click", () => goToOrderStep(currentStep + 1));
+  });
+
+  orderForm.querySelectorAll("[data-order-previous]").forEach((button) => {
+    button.addEventListener("click", () => goToOrderStep(currentStep - 1));
+  });
+
+  orderForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const invalidIndex = fieldsets.findIndex((fieldset) => !fieldset.checkValidity());
+    if (invalidIndex !== -1) {
+      showOrderStep(invalidIndex);
+      fieldsets[invalidIndex].reportValidity();
+      return;
+    }
+
+    navigateTo("dakujeme");
+  });
+
+  updateOrderProgress(currentStep);
 
   orderForm.querySelectorAll("input, select, textarea").forEach((control) => {
     const updateValidity = () => {
